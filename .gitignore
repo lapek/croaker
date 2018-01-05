@@ -1,0 +1,22 @@
+### Java ###
+*.class
+*.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+build/
+dist/
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
