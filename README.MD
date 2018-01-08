@@ -1,4 +1,5 @@
 # Croaker
+[![Build Status](https://travis-ci.org/lapek/croaker.svg?branch=master)](https://travis-ci.org/lapek/croaker)
 
 Twitter-clone project for training purpose.
 

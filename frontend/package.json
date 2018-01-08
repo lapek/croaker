@@ -8,7 +8,7 @@
     "build": "ng build --prod",
     "build-dev": "ng build",
     "build-watch": "ng build --watch=true",
-    "test": "ng test",
+    "test": "ng test --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
