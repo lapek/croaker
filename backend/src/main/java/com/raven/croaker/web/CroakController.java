@@ -1,0 +1,35 @@
+package com.raven.croaker.web;
+
+import com.raven.croaker.domain.Croak;
+import com.raven.croaker.service.CroakService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/croak")
+public class CroakController {
+    @Autowired
+    private CroakService croakService;
+
+    @ResponseBody
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity<Iterable<Croak>> getAll() {
+        return new ResponseEntity<Iterable<Croak>>(croakService.findAll(), HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/greetings", method = RequestMethod.POST)
+    public ResponseEntity<Croak> saveCroak(@RequestBody Croak croak) {
+        return new ResponseEntity<Croak>(croakService.save(croak), HttpStatus.CREATED);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/greetings", method = RequestMethod.PUT)
+    public ResponseEntity<Croak> deleteCroak(@RequestBody Croak croak) {
+        croakService.delete(croak);
+        return new ResponseEntity<Croak>(HttpStatus.NO_CONTENT);
+    }
+
+}
