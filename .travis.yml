@@ -9,11 +9,15 @@ addons:
   chrome: stable
 
 before install:
-  - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.0.deb && sudo dpkg -i --force-confnew elasticsearch-5.5.0.deb && sudo service elasticsearch restart
+  - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.0.deb && \
+    sudo dpkg -i --force-confnew elasticsearch-5.5.0.deb && \
+    sudo service elasticsearch start
 install:
   - nvm install 8.9.3
 before_script:
   - sleep 10
+  - elasticsearch -v
+  - curl http://localhost:9200/
 script:
   - gradle check
 
