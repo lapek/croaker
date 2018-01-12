@@ -1,4 +1,4 @@
-package com.raven.croaker.web;
+package com.raven.croaker.rest;
 
 import com.raven.croaker.domain.Croak;
 import com.raven.croaker.service.CroakService;
@@ -20,13 +20,13 @@ public class CroakController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/greetings", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<Croak> saveCroak(@RequestBody Croak croak) {
         return new ResponseEntity<Croak>(croakService.save(croak), HttpStatus.CREATED);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/greetings", method = RequestMethod.PUT)
+    @RequestMapping(value = "/", method = RequestMethod.DELETE)
     public ResponseEntity<Croak> deleteCroak(@RequestBody Croak croak) {
         croakService.delete(croak);
         return new ResponseEntity<Croak>(HttpStatus.NO_CONTENT);

@@ -1,4 +1,4 @@
-package croaker.web;
+package croaker.rest;
 
 public class CroakControllerTest {
 

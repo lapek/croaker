@@ -10,13 +10,8 @@ import java.util.Optional;
 
 @Service
 public class CroakServiceImpl implements CroakService{
-
-    private CroakRepository croakRepository;
-
     @Autowired
-    public CroakServiceImpl(CroakRepository croakRepository) {
-        this.croakRepository = croakRepository;
-    }
+    private CroakRepository croakRepository;
 
     public Croak save(Croak croak) {
         return croakRepository.save(croak);
