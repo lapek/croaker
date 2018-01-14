@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.*;
 
 @RestController
@@ -23,24 +25,30 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value ="/users", method = RequestMethod.GET)
-//    @PreAuthorize("hasAuthority('ADMIN_USER')")
+    @RequestMapping(value ="/all", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN_USER')")
     public Iterable<User> getUsers(){
         return userService.findAll();
     }
 
+//    @RequestMapping({ "/profile", "/me" }) //TODO return profile/user informations
+////    public Map<String, String> user(Principal principal) {
+////        Map<String, String> map = new LinkedHashMap<>();
+////        map.put("name", principal.getName());
+////        return map;
+////    }
+
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity signup(@RequestBody UserDTO userDTO) {
-//        if (userService.findByUsername(user.getUsername()) != null) {
-//            throw new RuntimeException("Username already exist");
-//        }
+        if (userService.findByUsername(userDTO.getUsername()) != null) {
+            throw new RuntimeException("Username already exist");
+        }
         User user = new User();
-//        user.setId("104"); //TODO Test that, should autogenerate id
         user.setPassword(new BCryptPasswordEncoder(encodingStrength).encode(userDTO.getPassword()));
         user.setUsername(userDTO.getUsername());
         Role role = new Role();
         role.setId("1");
-        role.setRoleName("STANDARD_USER");
+        role.setRoleName("STANDARD_USER"); //TODO stop making new roles
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         user.setRoles(roles);

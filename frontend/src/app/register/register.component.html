@@ -1,0 +1,16 @@
+<div>
+    <h2>Register</h2>
+    <form class="example-form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width">
+                <input matInput type="text" name="username" [(ngModel)]="model.username" #username="ngModel" placeholder="Username" required >
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width">
+                <input matInput type="password" name="password" [(ngModel)]="model.password" #password="ngModel" placeholder="Password" required >
+            </mat-form-field></td>
+        </tr></table>
+
+        <button mat-raised-button [disabled]="loading" color="primary">Register</button>
+        <a mat-button [routerLink]="['/login']">Cancel</a>
+    </form>
+</div>

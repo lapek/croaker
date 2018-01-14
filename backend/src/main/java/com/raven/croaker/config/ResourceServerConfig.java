@@ -35,8 +35,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                         "/actuator/**",
                         "/oauth/token",
                         "/api-docs/**",
-                        "/api/user/*"
+                        "/api/user/signup"
                 ).permitAll()
-                .antMatchers("/zapi/**" ).authenticated();
+                .anyRequest().authenticated();
     }
 }

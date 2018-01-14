@@ -1,0 +1,29 @@
+<div>
+    <h2>Login</h2>
+    <form class="example-form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width"
+                                    [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                        <input matInput type="text" name="username" [(ngModel)]="model.username" #username="ngModel"
+                               placeholder="Username" required>
+                        <mat-error *ngIf="f.submitted && !username.valid">
+                            Username is required
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width"
+                                    [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                        <input matInput type="password" name="password" [(ngModel)]="model.password" #password="ngModel"
+                               placeholder="Password" required>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+        <button mat-raised-button [disabled]="loading" color="primary">Login</button>
+        <a mat-button [routerLink]="['/register']">Register</a>
+    </form>
+</div>
