@@ -1,2 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* Import Material Theme */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Reset */
+html,
+body,
+div {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set up a default font */
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
