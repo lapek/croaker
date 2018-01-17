@@ -1,6 +1,11 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <h1>{{ title }}</h1>
+    <mat-toolbar-row fxLayoutAlign="space-between center">
+        <span>{{ title }}</span>
+        <div>
+            <button mat-button>About</button>
+            <button mat-button>Services</button>
+            <button mat-button>Contact</button>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>
 

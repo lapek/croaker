@@ -1,29 +1,31 @@
-<div>
-    <h2>Login</h2>
-    <form class="example-form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width"
-                                    [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                        <input matInput type="text" name="username" [(ngModel)]="model.username" #username="ngModel"
-                               placeholder="Username" required>
-                        <mat-error *ngIf="f.submitted && !username.valid">
-                            Username is required
-                        </mat-error>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width"
-                                    [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                        <input matInput type="password" name="password" [(ngModel)]="model.password" #password="ngModel"
-                               placeholder="Password" required>
-                    </mat-form-field>
-                </td>
-            </tr>
-        </table>
+<div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <div id="login-form" fxLayout="column" fxLayoutAlign="space-around center">
+        <div class="logo">
+            <img src="../../assets/croak.svg" alt="Croaker logo">
+        </div>
+        <div class="title">
+            LOGIN TO YOUR ACCOUNT
+        </div>
 
-        <button mat-raised-button [disabled]="loading" color="primary">Login</button>
-        <a mat-button [routerLink]="['/register']">Register</a>
-    </form>
+        <form #LoginForm="ngForm" (ngSubmit)="LoginForm.form.valid && login()" fxLayout="column" fxLayoutAlign="center center"
+              novalidate>
+            <mat-form-field class="login-input" hideRequiredMarker >
+                <input matInput type="text" name="username" [(ngModel)]="model.username" #username="ngModel"
+                       placeholder="Username" required />
+            </mat-form-field>
+            <mat-form-field class="login-input" hideRequiredMarker >
+                <input matInput type="password" name="password" [(ngModel)]="model.password" #password="ngModel"
+                       placeholder="Password" required />
+            </mat-form-field>
+
+            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <button class="submit" mat-raised-button [disabled]="!LoginForm.valid || loading" color="primary">Login</button>
+        </form>
+
+        <div class="register" fxLayout="column" fxLayoutAlign="center center">
+            <span>Don't have an account?</span>
+            <a class="link" [routerLink]="['/register']">Create an account</a>
+        </div>
+    </div>
 </div>
+
