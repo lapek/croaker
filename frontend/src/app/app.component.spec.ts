@@ -1,7 +1,6 @@
 import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
-import {MaterialModule} from './material.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TestsModule} from './tests.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -10,8 +9,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
-        BrowserAnimationsModule,
-        MaterialModule
+        TestsModule
       ],
     }).compileComponents();
   }));
@@ -25,10 +23,10 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('Croaker');
   }));
-  it('should render title in a h1 tag', async(() => {
+  it('should render title in a span tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Croaker');
+    expect(compiled.querySelector('span').textContent).toContain('Croaker');
   }));
 });

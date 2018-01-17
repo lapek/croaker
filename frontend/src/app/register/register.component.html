@@ -1,16 +1,32 @@
-<div>
-    <h2>CREATE AN ACCOUNT</h2>
-    <form class="example-form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-        <table class="example-full-width" cellspacing="0"><tr>
-            <td><mat-form-field class="example-full-width">
-                <input matInput type="text" name="username" [(ngModel)]="model.username" #username="ngModel" placeholder="Username" required >
-            </mat-form-field></td>
-            <td><mat-form-field class="example-full-width">
-                <input matInput type="password" name="password" [(ngModel)]="model.password" #password="ngModel" placeholder="Password" required >
-            </mat-form-field></td>
-        </tr></table>
+<div class="register-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <div id="register-form" fxLayout="column" fxLayoutAlign="space-around center">
+        <div class="logo">
+            <img src="../../assets/croak.svg" alt="Croaker logo">
+        </div>
+        <div class="title">
+            CREATE AN ACCOUNT
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" fxLayout="column"
+              fxLayoutAlign="center center"
+              novalidate>
 
-        <button mat-raised-button [disabled]="loading" color="primary">Register</button>
-        <a mat-button [routerLink]="['/login']">Cancel</a>
-    </form>
+            <mat-form-field class="register-input" hideRequiredMarker>
+                <input matInput type="text" name="username" formControlName="username" placeholder="Username" required/>
+            </mat-form-field>
+            <mat-form-field class="register-input" hideRequiredMarker>
+                <input matInput type="password" name="password" formControlName="password" placeholder="Password"
+                       required/>
+            </mat-form-field>
+
+            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <button class="submit" mat-raised-button [disabled]="!registerForm.valid || loading" color="primary">
+                Register
+            </button>
+        </form>
+
+        <div class="login" fxLayout="column" fxLayoutAlign="center center">
+            <span>Already have an account?</span>
+            <a class="link" [routerLink]="['/login']">Login</a>
+        </div>
+    </div>
 </div>

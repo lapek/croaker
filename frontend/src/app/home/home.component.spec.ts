@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HomeComponent} from './home.component';
-import {MaterialModule} from '../material.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TestsModule} from '../tests.module';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,20 +12,18 @@ describe('HomeComponent', () => {
         HomeComponent
       ],
       imports: [
-        BrowserAnimationsModule,
-        MaterialModule
+        TestsModule
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
+    component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it('should create home component', () => {
     expect(component).toBeTruthy();
   });
 });

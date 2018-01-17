@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -11,9 +11,9 @@ import {CroaksComponent} from './croaks/croaks.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {HomeComponent} from './home/home.component';
-import {routing} from './app.routing';
+import {AppRoutingModule} from './app-routing.module';
 import {AuthGuard} from './_guards';
-import {AlertService, AuthService, UserService} from './_services';
+import {AuthService, UserService} from './_services';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
 
 @NgModule({
@@ -29,13 +29,13 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FlexLayoutModule,
-    routing
+    AppRoutingModule
   ],
   providers: [
     AuthGuard,
-    AlertService,
     AuthService,
     UserService,
     {

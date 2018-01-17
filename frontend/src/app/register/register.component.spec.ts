@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {RegisterComponent} from './register.component';
-import {MaterialModule} from '../material.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TestsModule} from '../tests.module';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -13,20 +12,18 @@ describe('RegisterComponent', () => {
         RegisterComponent
       ],
       imports: [
-        BrowserAnimationsModule,
-        MaterialModule
+        TestsModule
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
+    component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it('should create register component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {LoginComponent} from './login.component';
-import {MaterialModule} from '../material.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TestsModule} from '../tests.module';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -13,20 +12,18 @@ describe('LoginComponent', () => {
         LoginComponent
       ],
       imports: [
-        BrowserAnimationsModule,
-        MaterialModule
+        TestsModule
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
+    component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it('should create login component', () => {
     expect(component).toBeTruthy();
   });
 });
