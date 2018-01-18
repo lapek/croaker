@@ -1,8 +1,8 @@
-### Java ###
+# Java
 *.class
 *.jar
 
-### STS ###
+# STS
 .apt_generated
 .classpath
 .factorypath
@@ -10,13 +10,37 @@
 .settings
 .springBeans
 
-### IntelliJ IDEA ###
-.idea
+# Node dependencies
+/frontend/node_modules/
+
+# IntelliJ IDEA and editors
+/.idea
 *.iws
 *.iml
 *.ipr
+.vscode/*
+.c9/
+
+# Gradle etc.
+/.sass-cache
+/connect.lock
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
 out/
 build/
-dist/
+coverage/
+/dist
+/tmp
+/out-tsc
 .gradle
 !gradle/wrapper/gradle-wrapper.jar
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db

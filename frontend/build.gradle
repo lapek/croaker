@@ -31,6 +31,11 @@ task npmClean(type: Delete) {
   delete "${webDir}/coverage"
 }
 
+
+task testCov(type: NpmTask) {
+  args = ['run', 'test-cov']
+}
+
 // clean task for npm
 task clean {}
 clean.dependsOn(npmClean)
@@ -46,7 +51,7 @@ assemble.dependsOn(build)
 
 // check task for npm
 task check {}
-check.dependsOn(npm_run_test)
+check.dependsOn(testCov)
 
 // run all task
 task runAll{}

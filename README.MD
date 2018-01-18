@@ -1,6 +1,6 @@
 # Croaker
 [![Build Status](https://travis-ci.org/lapek/croaker.svg?branch=master)](https://travis-ci.org/lapek/croaker)
-
+[![codecov](https://codecov.io/gh/lapek/croaker/branch/master/graph/badge.svg)](https://codecov.io/gh/lapek/croaker)
 Twitter-clone project for training purpose.
 
 ### Built With
@@ -13,5 +13,5 @@ To start developing the project:
 ```shell
 git clone https://github.com/lapek/croaker.git
 cd path-to-project/
-mvn clean install
+gradle check
 ```

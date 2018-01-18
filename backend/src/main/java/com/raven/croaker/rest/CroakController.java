@@ -1,6 +1,7 @@
 package com.raven.croaker.rest;
 
 import com.raven.croaker.domain.Croak;
+import com.raven.croaker.dto.CroakDTO;
 import com.raven.croaker.service.CroakService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,20 +17,22 @@ public class CroakController {
     @ResponseBody
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Croak>> getAll() {
-        return new ResponseEntity<Iterable<Croak>>(croakService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(croakService.findAll(), HttpStatus.OK);
     }
 
     @ResponseBody
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<Croak> saveCroak(@RequestBody Croak croak) {
-        return new ResponseEntity<Croak>(croakService.save(croak), HttpStatus.CREATED);
+    public ResponseEntity<Croak> saveCroak(@RequestBody CroakDTO croakDTO) {
+        Croak croak = new Croak();
+        croak.setMessage(croakDTO.getMessage());
+        return new ResponseEntity<>(croakService.save(croak), HttpStatus.CREATED);
     }
 
     @ResponseBody
     @RequestMapping(value = "/", method = RequestMethod.DELETE)
     public ResponseEntity<Croak> deleteCroak(@RequestBody Croak croak) {
         croakService.delete(croak);
-        return new ResponseEntity<Croak>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

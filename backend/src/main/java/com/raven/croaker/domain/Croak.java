@@ -31,14 +31,6 @@ public class Croak implements Serializable {
     @Field(type = FieldType.text)
     private String message;
 
-//    public Croak(){}
-//
-//    public Croak(Date postDate, Date lastEditDate, String message) {
-//        this.postDate = postDate;
-//        this.lastEditDate = lastEditDate;
-//        this.message = message;
-//    }
-
 
     public void setId(String id) {
         this.id = id;
