@@ -1,6 +1,6 @@
 package com.raven.croaker.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -19,7 +19,13 @@ public class User implements Serializable {
     private String username;
 
     @Field(type = FieldType.text)
-    //    @JsonIgnore //TODO fix that nonsense - with this saved password is null, without it is ok
+    private String displayName;
+
+    @Field(type = FieldType.text)
+    private String email;
+
+    @Field(type = FieldType.text)
+    @JsonIgnoreProperties(allowSetters = true)
     private String password;
 
     @Field(type = FieldType.Nested)
@@ -55,5 +61,21 @@ public class User implements Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }

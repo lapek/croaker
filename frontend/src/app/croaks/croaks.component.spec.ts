@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CroaksComponent } from './croaks.component';
+import {CroaksComponent} from './croaks.component';
+import {TestsModule} from "../tests.module";
 
 describe('CroaksComponent', () => {
   let component: CroaksComponent;
@@ -8,18 +9,23 @@ describe('CroaksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CroaksComponent ]
+      declarations: [
+        CroaksComponent
+      ],
+      imports: [
+        TestsModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CroaksComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
+    component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it('should create home component', () => {
     expect(component).toBeTruthy();
   });
 });

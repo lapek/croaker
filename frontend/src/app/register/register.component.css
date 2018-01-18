@@ -18,20 +18,9 @@
   width: 100%;
 }
 
-.register-form {
-  width: 100%;
-  text-align: left;
-}
-
 .login {
   margin: 32px auto 24px auto;
   font-weight: 500;
-}
-
-.submit {
-  width: 220px;
-  margin: 16px auto;
-  display: block;
 }
 
 .logo {

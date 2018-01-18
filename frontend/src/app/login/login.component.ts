@@ -4,11 +4,24 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {AuthService} from '../_services';
+import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
   moduleId: module.id.toString(),
   templateUrl: 'login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('login-form', [
+      transition(':enter', [
+        style({transform: 'translateY(100%)'}),
+        animate(120)
+      ]),
+      transition(':leave', [
+        style({transform: 'translateY(0)'}),
+        animate(120)
+      ])
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
   user: any = {};

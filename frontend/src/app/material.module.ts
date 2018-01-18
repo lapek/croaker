@@ -1,7 +1,6 @@
 import {
   MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatInputModule, MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatSnackBarModule, MatToolbarModule
+  MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatToolbarModule
 } from '@angular/material';
 import {NgModule} from '@angular/core';
 
@@ -15,7 +14,8 @@ import {NgModule} from '@angular/core';
     MatGridListModule,
     MatIconModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatStepperModule
   ],
   exports: [
     MatToolbarModule,
@@ -26,7 +26,8 @@ import {NgModule} from '@angular/core';
     MatGridListModule,
     MatIconModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatStepperModule
   ],
 })
 
