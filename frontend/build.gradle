@@ -32,7 +32,7 @@ task npmClean(type: Delete) {
 }
 
 
-task testCov(type: NpmTask) {
+task testCov(type: NpmTask, dependsOn: 'npmInstall') {
   args = ['run', 'test-cov']
 }
 
