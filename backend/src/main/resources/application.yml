@@ -4,7 +4,9 @@ elasticsearch:
   port: 9300
 
 security:
-  oauth2.resource.filter-order: 3
+  oauth2:
+    resource:
+      filter-order: 3
   signing-key: MaYzkSjmkzPC57L
   encoding-strength: 16
   security-realm: Spring Boot JWT Example Realm

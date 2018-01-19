@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-
-import {User} from '../_models';
 import {UserService} from '../_services';
 
 @Component({
@@ -9,10 +7,16 @@ import {UserService} from '../_services';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  currentUser: User;
+  currentUser: any;
+  username = '';
 
   constructor(private userService: UserService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.userService.getSelf()
+      .subscribe(
+        data => {
+          this.currentUser = data;
+          this.username = this.currentUser.username;
+        });
   }
 
   ngOnInit() {

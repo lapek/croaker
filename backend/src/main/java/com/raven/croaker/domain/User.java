@@ -25,7 +25,7 @@ public class User implements Serializable {
     private String email;
 
     @Field(type = FieldType.text)
-    @JsonIgnoreProperties(allowSetters = true)
+    @JsonIgnoreProperties(allowSetters = true) //TODO fix that - somehow password its not hidden
     private String password;
 
     @Field(type = FieldType.Nested)

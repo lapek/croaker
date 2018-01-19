@@ -10,18 +10,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-
     @Value("${security.encoding-strength}")
     private Integer encodingStrength;
 
@@ -34,12 +32,13 @@ public class UserController {
         return userService.findAll();
     }
 
-//    @RequestMapping({ "/profile", "/me" }) //TODO return profile/user informations
-////    public Map<String, String> user(Principal principal) {
-////        Map<String, String> map = new LinkedHashMap<>();
-////        map.put("name", principal.getName());
-////        return map;
-////    }
+    @RequestMapping(value = "/me", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
+    @ResponseBody
+    public User currentUser(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        return userService.findByUsername(principal.getName());
+    }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity signup(@RequestBody UserDTO userDTO) {

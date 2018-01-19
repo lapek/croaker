@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CroaksComponent} from './croaks.component';
-import {TestsModule} from "../tests.module";
+import {TestsModule} from '../tests.module';
 
 describe('CroaksComponent', () => {
   let component: CroaksComponent;
