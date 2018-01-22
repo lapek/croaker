@@ -1,0 +1,14 @@
+.logo {
+  color: white;
+}
+
+.logo img {
+  width: 32px;
+  height: auto;
+  vertical-align: top;
+  border: none;
+}
+
+a.logo {
+  text-decoration: none;
+}

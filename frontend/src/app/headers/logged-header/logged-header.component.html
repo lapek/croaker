@@ -1,0 +1,31 @@
+<mat-toolbar>
+    <mat-toolbar-row fxLayoutAlign="space-between center">
+        <div style="width: 150px"></div>
+        <div>
+            <a class="logo" [routerLink]="'home'">
+                <img src="../../../assets/croak.svg" alt="Croaker logo">
+            </a>
+        </div>
+        <div>
+            <button mat-icon-button>
+                <mat-icon>search</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon>message</mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" yPosition="below">
+                <button mat-menu-item>
+                    <mat-icon>settings</mat-icon>
+                    <span>Settings</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

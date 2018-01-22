@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {AuthService} from '../_services';
@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   loginForm: FormGroup;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
+  constructor(private router: Router,
               private authenticationService: AuthService,
               public snackBar: MatSnackBar,
               public fb: FormBuilder) {
@@ -42,7 +41,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authenticationService.logout();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
@@ -51,7 +49,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.user.username, this.user.password)
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate(['home']);
           this.snackBar.open('Successfully Logged in.', 'Ok', {
             duration: 2000
           });

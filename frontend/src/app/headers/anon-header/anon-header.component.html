@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayoutAlign="space-between center">
+        <div>
+            <a class="logo" [routerLink]="''">
+                <img src="../../../assets/croak.svg" alt="Croaker logo">
+                {{ title }}
+            </a>
+        </div>
+        <div>
+            <small>Already have an account?</small>
+            <a mat-button [routerLink]="['/login']">Login</a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

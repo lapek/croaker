@@ -15,14 +15,22 @@ import {AppRoutingModule} from './app-routing.module';
 import {AuthGuard} from './_guards';
 import {AuthService, UserService} from './_services';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
+import {AnonLayoutComponent, LoggedLayoutComponent} from './layouts';
+import {AnonHeaderComponent, LoggedHeaderComponent} from './headers';
+import {WallComponent} from './wall/wall.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AnonHeaderComponent,
+    LoggedHeaderComponent,
+    AnonLayoutComponent,
+    LoggedLayoutComponent,
     CroaksComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    WallComponent
   ],
   imports: [
     BrowserModule,
