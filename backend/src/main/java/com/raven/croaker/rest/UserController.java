@@ -32,21 +32,21 @@ public class UserController {
         return userService.findAll();
     }
 
-    @RequestMapping(value = "/me", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
     @ResponseBody
+    @RequestMapping(value = "/me", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('STANDARD_USER')")
     public User currentUser(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         return userService.findByUsername(principal.getName());
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ResponseEntity signup(@RequestBody UserDTO userDTO) {
+    public ResponseEntity signupStandardUser(@RequestBody UserDTO userDTO) {
         if (userService.findByUsername(userDTO.getUsername()) != null) {
-            throw new RuntimeException("Username already exist.");
+            return new ResponseEntity<>("Username already taken.", HttpStatus.CONFLICT);
         }
-        if (userService.findByEmail(userDTO.getUsername()) != null) {
-            throw new RuntimeException("Email already taken.");
+        if (userService.findByEmail(userDTO.getEmail()) != null) {
+            return new ResponseEntity<>("Email already taken.", HttpStatus.CONFLICT);
         }
         User user = new User();
         user.setPassword(new BCryptPasswordEncoder(encodingStrength).encode(userDTO.getPassword()));

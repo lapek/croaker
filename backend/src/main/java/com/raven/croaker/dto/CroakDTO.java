@@ -1,7 +1,7 @@
 package com.raven.croaker.dto;
 
 public class CroakDTO {
-    String message;
+    private String message;
 
     public String getMessage() {
         return message;

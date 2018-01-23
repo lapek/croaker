@@ -1,9 +1,7 @@
 package com.raven.croaker.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -18,19 +16,20 @@ public class Croak implements Serializable {
     @Id
     private String id;
 
-    @Field(type = FieldType.Date, store = true, format = DateFormat.basic_date_time)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z")
-    @CreatedDate
+    @Field(type = FieldType.Date, index = false)
     private Date postDate;
 
-    @Field(type = FieldType.Date, store = true, format = DateFormat.basic_date_time)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z")
-    @LastModifiedDate
+    @Field(type = FieldType.Date, index = false)
     private Date lastEditDate;
 
     @Field(type = FieldType.text)
     private String message;
 
+    @Field(type = FieldType.text)
+    private String userId;
+
+    @Field(type = FieldType.text)
+    private String username;
 
     public void setId(String id) {
         this.id = id;
@@ -62,5 +61,21 @@ public class Croak implements Serializable {
 
     public String getMessage() {
         return message;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

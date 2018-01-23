@@ -11,7 +11,6 @@ import java.util.List;
 
 @Document(indexName = "auth", type = "user")
 public class User implements Serializable {
-
     @Id
     private String id;
 
