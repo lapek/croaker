@@ -12,6 +12,7 @@
 
 # Node dependencies
 /frontend/node_modules/
+/frontend/package-lock.json
 
 # IntelliJ IDEA and editors
 /.idea
