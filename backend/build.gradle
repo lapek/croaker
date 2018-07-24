@@ -1,34 +1,18 @@
 // backend build.gradle
-
-buildscript {
-    ext {
-        springBootVersion = '2.0.0.M7'
-    }
-    repositories {
-        mavenCentral()
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
-
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: "jacoco"
+apply plugin: 'jacoco'
 
 group = 'com.raven'
 version = '0.0.1'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
+jar {
+    baseName = 'croakerapp'
+    version = '0.0.1'
 }
 
 idea {
@@ -38,27 +22,21 @@ idea {
     }
 }
 
-jar {
-    baseName = 'croakerapp'
-    version = '0.0.1'
-}
-
 configurations {
     dev
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile("org.springframework.boot:spring-boot-devtools")
-    compile('org.springframework.boot:spring-boot-starter-actuator')
-    compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
-    compile('org.springframework.boot:spring-boot-starter-security')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-jwt:1.0.9.RELEASE'
+    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.3.3.RELEASE'
 
-    compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.9.RELEASE'
-    compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.2.1.RELEASE'
-
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-//    testCompile('org.springframework.security:spring-security-test')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+//    testImplementation('org.springframework.security:spring-security-test')
 }
 
 bootRun {

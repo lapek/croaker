@@ -2,7 +2,6 @@ package com.raven.croaker.service.internal;
 
 import com.raven.croaker.domain.Croak;
 import com.raven.croaker.domain.CroakRepository;
-import com.raven.croaker.domain.User;
 import com.raven.croaker.service.CroakService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +11,12 @@ import java.util.Optional;
 
 @Service
 public class CroakServiceImpl implements CroakService {
-    @Autowired
     private CroakRepository croakRepository;
+
+    @Autowired
+    public void setCroakRepository(CroakRepository croakRepository) {
+        this.croakRepository = croakRepository;
+    }
 
     @Override
     public Croak save(Croak croak) {
