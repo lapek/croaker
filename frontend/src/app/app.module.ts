@@ -12,10 +12,10 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AuthGuard} from './_guards';
+import {AuthGuard, HomeGuard} from './_guards';
 import {AuthService, UserService} from './_services';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
-import {AnonLayoutComponent, LoggedLayoutComponent} from './layouts';
+import {AnonLayoutComponent, FullscreenLayoutComponent, LoggedLayoutComponent} from './layouts';
 import {AnonHeaderComponent, LoggedHeaderComponent} from './headers';
 import {WallComponent} from './wall/wall.component';
 
@@ -26,6 +26,7 @@ import {WallComponent} from './wall/wall.component';
     LoggedHeaderComponent,
     AnonLayoutComponent,
     LoggedLayoutComponent,
+    FullscreenLayoutComponent,
     CroaksComponent,
     LoginComponent,
     RegisterComponent,
@@ -43,6 +44,7 @@ import {WallComponent} from './wall/wall.component';
   ],
   providers: [
     AuthGuard,
+    HomeGuard,
     AuthService,
     UserService,
     {

@@ -15,10 +15,6 @@ addons:
 services:
   - elasticsearch
 
-# before install:
-#   - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.0.deb && \
-#     sudo dpkg -i --force-confnew elasticsearch-5.5.0.deb && \
-#     sudo service elasticsearch start
 install:
   - nvm install 8.9.3
 before_script:
@@ -29,7 +25,7 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 script:
-  - gradle check
+  - ./gradlew check
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 

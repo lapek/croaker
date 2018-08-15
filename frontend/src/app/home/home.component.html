@@ -1,1 +1,8 @@
-<h1>Home</h1>
+<div id="leftHalf" fxLayout="column" fxLayoutAlign="center center">
+    Find something interesting.
+</div>
+<div id="rightHalf" fxLayout="column" fxLayoutAlign="center center">
+    <h1>Join Croaker today!</h1>
+    <a mat-raised-button class="btn" color="primary" [routerLink]="['/register']">Sign up</a>
+    <a mat-raised-button class="btn" [routerLink]="['/login']">Log in</a>
+</div>

@@ -1,0 +1,21 @@
+#leftHalf {
+    background: #1da1f2;
+    width: 50%;
+    position: absolute;
+    left: 0;
+    height: 100%;
+}
+
+#rightHalf {
+    background: white;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+
+.btn {
+    width: 220px;
+    margin: 8px auto;
+    display: block;
+}
