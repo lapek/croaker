@@ -18,6 +18,7 @@ services:
 install:
   - nvm install 8.9.3
 before_script:
+  - chmod +x gradlew
   - 'echo "cluster.name: croaker-cluster" | sudo tee -a /etc/elasticsearch/elasticsearch.yml'
   - sudo service elasticsearch restart
   - sleep 10
