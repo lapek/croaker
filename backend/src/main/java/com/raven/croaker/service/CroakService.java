@@ -1,20 +1,48 @@
 package com.raven.croaker.service;
 
 import com.raven.croaker.domain.Croak;
-import com.raven.croaker.domain.User;
+import com.raven.croaker.domain.CroakRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
-public interface CroakService {
-    Croak save(Croak croak);
+@Service
+public class CroakService {
+    private CroakRepository croakRepository;
 
-    Croak update(Croak croak);
+    @Autowired
+    public CroakService(CroakRepository croakRepository) {
+        this.croakRepository = croakRepository;
+    }
 
-    void delete(Croak croak);
+    public Croak save(Croak croak) {
+        Date currentTime = new Date();
+        croak.setPostDate(currentTime);
+        croak.setLastEditDate(currentTime);
+        return croakRepository.save(croak);
+    }
 
-    Optional<Croak> findOne(String id);
+    public Croak update(Croak croak) {
+        Date currentTime = new Date();
+        croak.setLastEditDate(currentTime);
+        return croakRepository.save(croak);
+    }
 
-    Iterable<Croak> findAll();
+    public Iterable<Croak> findAllFromUser(String username) {
+        return croakRepository.findByUsername(username);
+    }
 
-    Iterable<Croak> findAllFromUser(String username);
+    public void delete(Croak croak) {
+        croakRepository.delete(croak);
+    }
+
+    public Optional<Croak> findOne(String id) {
+        return croakRepository.findById(id);
+    }
+
+    public Iterable<Croak> findAll() {
+        return croakRepository.findAll();
+    }
 }

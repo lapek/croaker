@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath('org.springframework.boot:spring-boot-gradle-plugin:2.0.1.RELEASE')
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:2.2.1.RELEASE')
     }
 }
 
@@ -17,7 +17,7 @@ allprojects {
 
 // gradle wrapper
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.2'
+    gradleVersion = '4.10'
 }
 
 

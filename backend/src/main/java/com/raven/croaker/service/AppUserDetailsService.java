@@ -1,4 +1,4 @@
-package com.raven.croaker.service.internal;
+package com.raven.croaker.service;
 
 import com.raven.croaker.domain.User;
 import com.raven.croaker.domain.UserRepository;
@@ -15,9 +15,14 @@ import java.util.List;
 
 
 @Component
-public class AppUserDetailsServiceImpl implements UserDetailsService {
-    @Autowired
+public class AppUserDetailsService implements UserDetailsService {
+
     private UserRepository userRepository;
+
+    @Autowired
+    public AppUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

@@ -3,7 +3,7 @@ package croaker.service;
 import com.raven.croaker.CroakerApp;
 import com.raven.croaker.domain.Croak;
 import com.raven.croaker.domain.CroakRepository;
-import com.raven.croaker.service.internal.CroakServiceImpl;
+import com.raven.croaker.service.CroakService;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
-public class CroakServiceImplTest {
+public class CroakServiceTest {
 //    private CroakServiceImpl croakServiceImpl;
 //
 //    @Mock

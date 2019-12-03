@@ -1,13 +1,32 @@
 package com.raven.croaker.service;
 
 import com.raven.croaker.domain.User;
+import com.raven.croaker.domain.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface UserService {
-    User save(User user);
+@Service
+public class UserService {
+    private UserRepository userRepository;
 
-    User findByUsername(String username);
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-    User findByEmail(String email);
+    public User save(User user) {
+        return userRepository.save(user);
+    }
 
-    Iterable<User> findAll();
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public Iterable<User> findAll() {
+        return userRepository.findAll();
+    }
 }
