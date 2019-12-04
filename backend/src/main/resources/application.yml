@@ -1,4 +1,4 @@
 elasticsearch:
   clustername: croaker-cluster
   host: localhost
-  port: 9300
+  port: 9200

@@ -9,12 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CroakerApp {
 
-    private static final Logger logger = LoggerFactory.getLogger(CroakerApp.class);
+    private static final Logger log = LoggerFactory.getLogger(CroakerApp.class);
 
     public static void main(String[] args) {
         SpringApplication.run(CroakerApp.class, args);
 
-        logger.info("\n----------------------------------------------------------\n\t"
+        log.info("\n----------------------------------------------------------\n\t"
                 + "Application is running!" +
                 "\n----------------------------------------------------------");
     }

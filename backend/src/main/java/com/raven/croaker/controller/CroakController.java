@@ -1,4 +1,4 @@
-package com.raven.croaker.rest;
+package com.raven.croaker.controller;
 
 import com.raven.croaker.domain.Croak;
 import com.raven.croaker.domain.User;

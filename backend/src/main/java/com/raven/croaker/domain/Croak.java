@@ -10,6 +10,7 @@ import java.util.Date;
 
 @Document(indexName = "wall", type = "croak")
 public class Croak implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     private String id;

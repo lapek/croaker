@@ -1,6 +1,5 @@
 package com.raven.croaker.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -11,6 +10,8 @@ import java.util.List;
 
 @Document(indexName = "auth", type = "user")
 public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     private String id;
 
@@ -24,11 +25,22 @@ public class User implements Serializable {
     private String email;
 
     @Field(type = FieldType.Text)
-    @JsonIgnoreProperties(allowSetters = true) //TODO fix that - somehow password its not hidden
     private String password;
 
     @Field(type = FieldType.Nested)
     private List<Role> roles;
+
+    public User() {
+    }
+
+    public User(String id, String username, String displayName, String email, String password, List<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.displayName = displayName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public String getId() {
         return id;

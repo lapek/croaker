@@ -5,8 +5,10 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.io.Serializable;
+
 @Document(indexName = "auth", type = "role")
-public class Role {
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
