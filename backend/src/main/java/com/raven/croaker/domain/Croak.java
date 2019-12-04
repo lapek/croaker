@@ -1,8 +1,6 @@
 package com.raven.croaker.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
@@ -22,13 +20,13 @@ public class Croak implements Serializable {
     @Field(type = FieldType.Date, index = false)
     private Date lastEditDate;
 
-    @Field(type = FieldType.text)
+    @Field(type = FieldType.Text)
     private String message;
 
-    @Field(type = FieldType.text)
+    @Field(type = FieldType.Text)
     private String userId;
 
-    @Field(type = FieldType.text)
+    @Field(type = FieldType.Text)
     private String username;
 
     public void setId(String id) {

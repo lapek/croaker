@@ -14,16 +14,16 @@ public class User implements Serializable {
     @Id
     private String id;
 
-    @Field(type = FieldType.text)
+    @Field(type = FieldType.Text)
     private String username;
 
-    @Field(type = FieldType.text)
+    @Field(type = FieldType.Text)
     private String displayName;
 
-    @Field(type = FieldType.text)
+    @Field(type = FieldType.Text)
     private String email;
 
-    @Field(type = FieldType.text)
+    @Field(type = FieldType.Text)
     @JsonIgnoreProperties(allowSetters = true) //TODO fix that - somehow password its not hidden
     private String password;
 

@@ -8,7 +8,6 @@ import com.raven.croaker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,11 +17,14 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/api/croak")
 public class CroakController {
-    @Autowired
     private CroakService croakService;
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    public CroakController(CroakService croakService, UserService userService) {
+        this.croakService = croakService;
+        this.userService = userService;
+    }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET)
@@ -38,7 +40,6 @@ public class CroakController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST)
-    @PreAuthorize("hasAuthority('STANDARD_USER')")
     public ResponseEntity<Croak> saveCroak(@RequestBody CroakDTO croakDTO, HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         User user = userService.findByUsername(principal.getName());
@@ -51,11 +52,10 @@ public class CroakController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.DELETE)
-    @PreAuthorize("hasAuthority('STANDARD_USER')")
     public ResponseEntity<Croak> deleteCroak(@RequestBody Croak croak, HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         User user = userService.findByUsername(principal.getName());
-        if(croak.getUserId().equals(user.getId()) && Objects.equals(croak.getUsername(), user.getUsername())) {
+        if (croak.getUserId().equals(user.getId()) && Objects.equals(croak.getUsername(), user.getUsername())) {
             croakService.delete(croak);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
