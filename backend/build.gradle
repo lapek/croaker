@@ -20,6 +20,10 @@ idea {
     }
 }
 
+jacoco {
+    toolVersion = "0.8.2"
+}
+
 configurations {
     dev
 }
@@ -58,8 +62,4 @@ jacocoTestReport {
     }
 }
 
-jacoco {
-    toolVersion = "0.8.2"
-}
-
-check.dependsOn jacocoTestCoverageVerification
+check.dependsOn(jacocoTestReport)
