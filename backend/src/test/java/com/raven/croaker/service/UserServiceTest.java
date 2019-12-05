@@ -4,15 +4,13 @@ import com.raven.croaker.exception.UserAlreadyExistException;
 import com.raven.croaker.exception.UserNotFoundException;
 import com.raven.croaker.model.User;
 import com.raven.croaker.repository.UserRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class UserServiceTest {
     @InjectMocks
     private UserService userService;
@@ -30,7 +27,7 @@ public class UserServiceTest {
     @MockBean
     private UserRepository userRepository;
 
-    @Before
+    @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
     }
@@ -59,29 +56,29 @@ public class UserServiceTest {
         assertFalse(userService.getAllUsers().isEmpty());
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test
     public void shouldThrowExceptionWhenUserByNameNoExists() {
         Mockito.when(userRepository.findByUsername("test")).thenReturn(Optional.empty());
-        userService.findByUsername("test");
+        assertThrows(UserNotFoundException.class, () -> userService.findByUsername("test"));
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test
     public void shouldThrowExceptionWhenUserByEmailNoExists() {
         Mockito.when(userRepository.findByEmail("test@test")).thenReturn(Optional.empty());
-        userService.findByEmail("test@test");
+        assertThrows(UserNotFoundException.class, () -> userService.findByEmail("test@test"));
     }
 
-    @Test(expected = UserAlreadyExistException.class)
+    @Test
     public void shouldThrowExceptionWhenUserExists() {
         User user = new User("test", "Test", "mail@test.com", "password");
         when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.of(user));
-        userService.addUser(user);
+        assertThrows(UserAlreadyExistException.class, () -> userService.addUser(user));
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test
     public void shouldThrowExceptionWhileModifyWhenUserNoExists() {
         String id = "fs$Hgfhs5";
         when(userRepository.findById(id)).thenReturn(Optional.empty());
-        userService.modifyUser(new User(), id);
+        assertThrows(UserNotFoundException.class, () -> userService.modifyUser(new User(), id));
     }
 }
