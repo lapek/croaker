@@ -1,12 +1,13 @@
 package com.raven.croaker.service;
 
-import com.raven.croaker.domain.Croak;
-import com.raven.croaker.domain.CroakRepository;
+import com.raven.croaker.model.Croak;
+import com.raven.croaker.repository.CroakRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class CroakService {
@@ -30,19 +31,13 @@ public class CroakService {
         return croakRepository.save(croak);
     }
 
-    public Iterable<Croak> findAllFromUser(String username) {
-        return croakRepository.findByUsername(username);
-    }
-
     public void delete(Croak croak) {
         croakRepository.delete(croak);
     }
 
-    public Optional<Croak> findOne(String id) {
-        return croakRepository.findById(id);
-    }
-
-    public Iterable<Croak> findAll() {
-        return croakRepository.findAll();
+    public List<Croak> findAll() {
+        List<Croak> list = new ArrayList<>();
+        croakRepository.findAll().forEach(list::add);
+        return list;
     }
 }

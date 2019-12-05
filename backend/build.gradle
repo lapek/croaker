@@ -25,17 +25,13 @@ configurations {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'io.springfox:springfox-swagger2:2.4.0'
     implementation 'io.springfox:springfox-swagger-ui:2.4.0'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
-//    testImplementation('org.springframework.security:spring-security-test')
-
     runtime 'org.springframework.boot:spring-boot-devtools'
 }
 
@@ -47,14 +43,23 @@ bootRun {
 task runAll {}
 runAll.dependsOn(bootRun)
 
-
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-        csv.enabled = false
-        html.destination file("coverage/html")
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'PASSED', 'FAILED', 'SKIPPED'
     }
 }
 
-check.dependsOn(jacocoTestReport)
+jacocoTestReport {
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = false
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+check.dependsOn jacocoTestCoverageVerification

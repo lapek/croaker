@@ -1,5 +1,6 @@
-package com.raven.croaker.domain;
+package com.raven.croaker.repository;
 
+import com.raven.croaker.model.User;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,9 @@
 package com.raven.croaker.service;
 
-import com.raven.croaker.domain.User;
-import com.raven.croaker.domain.UserRepository;
 import com.raven.croaker.exception.UserAlreadyExistException;
 import com.raven.croaker.exception.UserNotFoundException;
+import com.raven.croaker.model.User;
+import com.raven.croaker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,34 +1,23 @@
-package com.raven.croaker.domain;
+package com.raven.croaker.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Document(indexName = "wall", type = "croak")
-public class Croak implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Croak {
 
     @Id
     private String id;
 
-    @Field(type = FieldType.Date, index = false)
     private Date postDate;
 
-    @Field(type = FieldType.Date, index = false)
     private Date lastEditDate;
 
-    @Field(type = FieldType.Text)
     private String message;
 
-    @Field(type = FieldType.Text)
-    private String userId;
-
-    @Field(type = FieldType.Text)
-    private String username;
+    private User user;
 
     public void setId(String id) {
         this.id = id;
@@ -62,19 +51,11 @@ public class Croak implements Serializable {
         return message;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

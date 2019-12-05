@@ -1,45 +1,40 @@
-package com.raven.croaker.domain;
+package com.raven.croaker.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import java.io.Serializable;
-import java.util.List;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Document(indexName = "auth", type = "user")
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class User {
 
     @Id
     private String id;
 
-    @Field(type = FieldType.Text)
+    @Size(min = 2, max = 20, message = "{user.info.name}")
+    @NotNull
     private String username;
 
-    @Field(type = FieldType.Text)
+    @NotNull
     private String displayName;
 
-    @Field(type = FieldType.Text)
+    @Email
+    @NotNull
     private String email;
 
-    @Field(type = FieldType.Text)
+    @NotNull
     private String password;
-
-    @Field(type = FieldType.Nested)
-    private List<Role> roles;
 
     public User() {
     }
 
-    public User(String id, String username, String displayName, String email, String password, List<Role> roles) {
-        this.id = id;
+    public User(@Size(min = 2, max = 20, message = "{user.info.name}") @NotNull String username, @NotNull String displayName, @Email @NotNull String email, @NotNull String password) {
         this.username = username;
         this.displayName = displayName;
         this.email = email;
         this.password = password;
-        this.roles = roles;
     }
 
     public String getId() {
@@ -64,14 +59,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 
     public String getEmail() {
