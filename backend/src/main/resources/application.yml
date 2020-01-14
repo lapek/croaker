@@ -1,19 +1,4 @@
 elasticsearch:
   clustername: croaker-cluster
-  host: localhost
+  host: 127.0.0.1
   port: 9300
-
-security:
-  oauth2:
-    resource:
-      filter-order: 3
-  signing-key: MaYzkSjmkzPC57L
-  encoding-strength: 16
-  security-realm: Spring Boot JWT Example Realm
-  jwt:
-    client-id: ngclientid
-    client-secret: XY7kmzoNzl100
-    grant-type: password
-    scope-read: read
-    scope-write: write
-    resource-ids: testjwtresourceid

@@ -3,7 +3,7 @@ package com.raven.croaker.config;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ import java.net.InetAddress;
 
 
 @Configuration
-@EnableElasticsearchRepositories(basePackages = "com.raven.croaker.domain")
+@EnableElasticsearchRepositories(basePackages = "com.raven.croaker.repository")
 public class ElasticsearchConfiguration {
 
     @Value("${elasticsearch.host}")
@@ -30,15 +30,12 @@ public class ElasticsearchConfiguration {
 
     @Bean
     public Client client() throws Exception {
-
         Settings elasticsearchSettings = Settings.builder()
                 .put("cluster.name", elasticsearchClusterName)
                 .build();
 
         TransportClient client = new PreBuiltTransportClient(elasticsearchSettings);
-
-        return client
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(elasticsearchHost), elasticsearchPort));
+        return client.addTransportAddress(new TransportAddress(InetAddress.getByName(elasticsearchHost), elasticsearchPort));
     }
 
     @Bean

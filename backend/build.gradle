@@ -1,18 +1,17 @@
 // backend build.gradle
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-apply plugin: 'jacoco'
+plugins {
+    id 'org.springframework.boot'
+    id 'java'
+    id 'idea'
+    id 'jacoco'
+    id 'io.spring.dependency-management'
+}
 
 group = 'com.raven'
 version = '0.0.1'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-jar {
-    baseName = 'croakerapp'
-    version = '0.0.1'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 idea {
@@ -22,21 +21,26 @@ idea {
     }
 }
 
+jacoco {
+    toolVersion = "0.8.2"
+}
+
 configurations {
     dev
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.security:spring-security-jwt:1.0.9.RELEASE'
-    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.3.3.RELEASE'
-
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
-//    testImplementation('org.springframework.security:spring-security-test')
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'io.springfox:springfox-swagger2:2.4.0'
+    implementation 'io.springfox:springfox-swagger-ui:2.4.0'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    runtime 'org.springframework.boot:spring-boot-devtools'
 }
 
 bootRun {
@@ -47,14 +51,18 @@ bootRun {
 task runAll {}
 runAll.dependsOn(bootRun)
 
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'PASSED', 'FAILED', 'SKIPPED'
+    }
+}
 
 jacocoTestReport {
     reports {
-        xml.enabled = true
         html.enabled = true
+        xml.enabled = true
         csv.enabled = false
-        html.destination file("coverage/html")
-
     }
 }
 

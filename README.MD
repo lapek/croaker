@@ -6,7 +6,7 @@ Twitter-clone project for training purpose (under development).
 
 ### Built With
 * Spring Boot 2 (based on Spring 5) with Gradle
-* ElasticSearch 5.5 
+* ElasticSearch 7.5 
 * Angular 6 (with Angular Material) 
 
 ### Setting up Dev
