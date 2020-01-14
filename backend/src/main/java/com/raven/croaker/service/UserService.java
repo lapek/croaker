@@ -1,27 +1,36 @@
 package com.raven.croaker.service;
 
 import com.raven.croaker.exception.UserAlreadyExistException;
+import com.raven.croaker.exception.UserCreationErrorException;
 import com.raven.croaker.exception.UserNotFoundException;
+import com.raven.croaker.model.Role;
 import com.raven.croaker.model.User;
+import com.raven.croaker.repository.RoleRepository;
 import com.raven.croaker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
+import static com.raven.croaker.model.Roles.USER;
 
 @Service
 public class UserService {
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
-     * Add new user. If user already exists throw {@link UserAlreadyExistException}.
+     * Add new user with role "USER".
+     * If user already exists throw {@link UserAlreadyExistException}.
      *
      * @param user user to add
      * @return added user
@@ -30,6 +39,18 @@ public class UserService {
         Optional<User> userByName = getUserByName(user.getUsername());
         if (userByName.isPresent())
             throw new UserAlreadyExistException("User with name " + user.getUsername() + " already exists.");
+
+        user.setEnabled(true);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        final String roleToSearch = USER.getName();
+        Optional<Role> role = roleRepository.findByRoleName(roleToSearch);
+        if (!role.isPresent())
+            throw new UserCreationErrorException("Role '" + roleToSearch + "' doesn't exist.");
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(role.get());
+        user.setRoles(roles);
 
         return userRepository.save(user);
     }

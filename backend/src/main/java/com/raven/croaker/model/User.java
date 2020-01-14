@@ -6,8 +6,9 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
-@Document(indexName = "auth", type = "user")
+@Document(indexName = "user")
 public class User {
 
     @Id
@@ -27,10 +28,14 @@ public class User {
     @NotNull
     private String password;
 
+    private Set<Role> roles;
+
+    private boolean enabled;
+
     public User() {
     }
 
-    public User(@Size(min = 2, max = 20, message = "{user.info.name}") @NotNull String username, @NotNull String displayName, @Email @NotNull String email, @NotNull String password) {
+    public User(String username, String displayName, String email, String password) {
         this.username = username;
         this.displayName = displayName;
         this.email = email;
@@ -75,5 +80,21 @@ public class User {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

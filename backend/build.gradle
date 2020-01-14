@@ -4,14 +4,15 @@ plugins {
     id 'java'
     id 'idea'
     id 'jacoco'
+    id 'io.spring.dependency-management'
 }
-
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.raven'
 version = '0.0.1'
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 idea {
     module {
@@ -32,10 +33,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
     implementation 'io.springfox:springfox-swagger2:2.4.0'
     implementation 'io.springfox:springfox-swagger-ui:2.4.0'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
     runtime 'org.springframework.boot:spring-boot-devtools'
 }
 
